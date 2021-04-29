@@ -4,14 +4,18 @@
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 
+#include <iostream>
 #include <string>
 
 class ImagReader{
 private:
 
+    const char *path_name;
 
 public:
-    ImagReader(std::string);
+
+    ImagReader(const char *);
+    void showImage(const char * = "Image");
 };
 
 #endif

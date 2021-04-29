@@ -8,17 +8,11 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
-    cout << "\nhello world\n" << endl;
+    const char chaine [] = "lena_color_512.tif";
+    const char * path = chaine;
 
-    cv::Mat image;
-    image = cv::imread("lena_color_512.tif");
-    cv::namedWindow("Original Image");
-    cv::imshow("Original Image", image);
-
-    cv::waitKey(0);
-
-    ImagReader read_one("woman_blonde.tif");
-
+    ImagReader image_1(path);
+    image_1.showImage("Lena");
     cv::waitKey(0);
     
     return 0;
