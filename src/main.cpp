@@ -4,6 +4,7 @@
 #include "image_reader.h"
 #include "video_reader.h"
 #include "cam_reader.h"
+#include "param.h"
 
 using namespace std;
 using namespace cv;
@@ -22,60 +23,33 @@ int main(int argc, char *argv[]){
     const char vid_name [] = "Walk together";
     const char *video_name = vid_name;
 
-    Mat imag;
-    Mat *imag_ptr = &imag;
-
-    Mat *imag_ptr2;
+    Mat *imag_ptr;
 
     namedWindow(image_name, WINDOW_AUTOSIZE);
     ImagReader image_1(path_imag);
-//    imag = image_1.getImage();
-    
-//    image_1.getImage(imag_ptr2);
-//    image_1.getImage(imag_ptr);
-//    imshow(image_name, *imag_ptr);
 
-    imag_ptr2 = image_1.getImage();
-    imshow(image_name, *imag_ptr2);
+    imag_ptr = image_1.getImage();
+    imshow(image_name, *imag_ptr);
     cv::waitKey(1000);
 
+    Inputs mytest;
+    SetInput::Init(&mytest);
 
+    cout << mytest.image_name << endl;
 
-//    image_1.showImage("Lena");
+/*    int popo;
+    Inputs *input_ptr;
+    Inputs momo;
+    momo = SetInput::Init(&popo);
 
-/*
-    cv::waitKey(500);
-    cv::waitKey(0);*/
+    int *ptr;
+    ptr = momo.name_ptr;
 
+    cout <<"\t" << momo.name << "\t" << momo.maya <<endl;
 
+    cout <<"\t" << momo.name_ptr << "\t" << ptr <<endl;
 
-//    image_1.~ImagReader();
+    cout <<"\t toto = " << popo << endl; */
 
-
-/*    Mat _image;
-    _image = imread(_path_name);
-    namedWindow(_window_name, WINDOW_AUTOSIZE);
-    imshow(_window_name, _image);
-    
-    waitKey(1000);
-    destroyWindow(_window_name);*/
-
-
-/*    VideoReader video_1(path_video);
-    video_1.showVideo("Two people meet");
-    video_1.~VideoReader();*/
-
-/*    ImagReader image_1(path_imag);
-    image_1.showImage("Lena");
-    cv::waitKey(500);
-    cv::waitKey(0);
-    image_1.~ImagReader();*/
-
-
-//    CamReader cam_1(path_video);
- //   cam_1.showVideo();
-
-    cout << "hello no world" << endl;
-    
     return 0;
 }
