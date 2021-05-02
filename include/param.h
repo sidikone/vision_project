@@ -6,9 +6,10 @@
 //typedef
  struct Inputs {
 
-    std::string path_imag;
+    std::string image_path;
     std::string image_name;
-    std::string path_video;
+
+    std::string video_path;
     std::string video_name;
 };
 

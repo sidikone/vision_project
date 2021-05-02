@@ -11,18 +11,12 @@ private:
 
     const char *_window_name;
     cv::Mat _image;
- //   cv::Mat *_image_ptr = &_image;
 
 public:
 
-    ImagReader(const char *);
-
-//    cv::Mat getImage();
-    void getImage(cv::Mat *);
-
+    ImagReader(std::string);
+    void getImage(cv::Mat& );
     cv::Mat* getImage();
-//    void getImage(cv::Mat *);
-
     ~ImagReader();
 };
 

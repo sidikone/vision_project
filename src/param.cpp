@@ -55,9 +55,9 @@ using namespace SetInput;
 void SetInput::Init(Inputs *ptr){
     //static Inputs mama;
 
-    ptr->path_imag = "/home/aboubakar/Images/standard_test_images/cameraman.tif";
+    ptr->image_path = "/home/aboubakar/Images/standard_test_images/cameraman.tif";
     ptr->image_name = "Cameraman";
-    ptr->path_video = "/home/aboubakar/Vidéos/Meet_WalkTogether1.mpg";
+    ptr->video_path = "/home/aboubakar/Vidéos/Meet_WalkTogether1.mpg";
     ptr->video_name = "Walk together";
 
 }
