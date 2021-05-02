@@ -8,7 +8,7 @@ ImagReader::ImagReader(string path){
 }
 
 
-void ImagReader::showImage(string window_name = "Image"){
+void ImagReader::showImage(string window_name){
     imshow(window_name, _image);
 }
 

@@ -14,7 +14,7 @@ private:
 public:
 
     ImagReader(std::string);
-    void showImage(std::string);
+    void showImage(std::string="Image");
     void getImage(cv::Mat& );
     cv::Mat* getImage();
     ~ImagReader();

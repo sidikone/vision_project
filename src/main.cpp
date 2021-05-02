@@ -23,9 +23,18 @@ int main(int argc, char *argv[]){
     Mat imag;
     image_1.getImage(imag);
 
-    namedWindow(*img_name_ptr, WINDOW_AUTOSIZE);
-    imshow(*img_name_ptr, imag);
+//    namedWindow(*img_name_ptr, WINDOW_AUTOSIZE);
+
+
+    image_1.showImage(*img_name_ptr);
+//    imshow(*img_name_ptr, imag);
     cv::waitKey(1000);
+    destroyWindow(*img_name_ptr);
+
+
+    VideoReader video_1(data_set.video_path);
+    string *video_name_ptr = &data_set.video_name;
+    video_1.showVideo(*video_name_ptr, 5);
 
     return 0;
 }

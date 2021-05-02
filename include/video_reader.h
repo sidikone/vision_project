@@ -4,16 +4,16 @@
 #include <opencv2/highgui.hpp>
 
 #include <iostream>
+#include <string>
 
 class VideoReader{
 
 private:
-    const char *_path_name;
-    const char *_window_name;
+    cv::VideoCapture _video;
 
 public:
-    VideoReader(const char *);
-    void showVideo(const char * ="Video");
+    VideoReader(std::string);
+    void showVideo(std::string="Video", int=33);
     ~VideoReader();
 
 };
