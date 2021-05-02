@@ -7,6 +7,19 @@ VideoReader::VideoReader(string path){
     _video.open(path);
 }
 
+/*
+void getVideo(VideoCapture& ref_out){
+    VideoCapture temp_video;
+    ref_out = temp_video;
+
+}
+
+
+VideoCapture* getVideo(){
+    VideoCapture temp_video;
+    return &temp_video;
+}
+*/
 
 void VideoReader::showVideo(string window_name, int delta){
 

@@ -13,6 +13,8 @@ private:
 
 public:
     VideoReader(std::string);
+ /*   void getVideo(cv::VideoCapture& );
+    cv::VideoCapture* getVideo();*/
     void showVideo(std::string="Video", int=33);
     ~VideoReader();
 
