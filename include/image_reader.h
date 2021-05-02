@@ -9,12 +9,12 @@
 class ImagReader{
 private:
 
-    const char *_window_name;
     cv::Mat _image;
 
 public:
 
     ImagReader(std::string);
+    void showImage(std::string);
     void getImage(cv::Mat& );
     cv::Mat* getImage();
     ~ImagReader();

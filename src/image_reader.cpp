@@ -3,12 +3,14 @@
 using namespace cv;
 using namespace std;
 
-
 ImagReader::ImagReader(string path){
-
     _image = imread(path);
 }
 
+
+void ImagReader::showImage(string window_name = "Image"){
+    imshow(window_name, _image);
+}
 
 void ImagReader::getImage(cv::Mat& ref_out){
     ref_out = _image;
