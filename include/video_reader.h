@@ -9,9 +9,12 @@
 class VideoReader{
 
 private:
+
+protected:
     cv::VideoCapture _video;
 
 public:
+    VideoReader(){};
     VideoReader(std::string);
  /*   void getVideo(cv::VideoCapture& );
     cv::VideoCapture* getVideo();*/

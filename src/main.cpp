@@ -23,8 +23,8 @@ int main(int argc, char *argv[]){
     Mat imag;
     image_1.getImage(imag);
 
-//    namedWindow(*img_name_ptr, WINDOW_AUTOSIZE);
 
+//    namedWindow(*img_name_ptr, WINDOW_AUTOSIZE);
 
     image_1.showImage(*img_name_ptr);
 //    imshow(*img_name_ptr, imag);
@@ -35,6 +35,14 @@ int main(int argc, char *argv[]){
     VideoReader video_1(data_set.video_path);
     string *video_name_ptr = &data_set.video_name;
     video_1.showVideo(*video_name_ptr, 5);
+    destroyWindow(*video_name_ptr);
+
+    namedWindow("Camera", WINDOW_AUTOSIZE);
+    CamReader cam_1(0);
+    cam_1.showVideo("Camera", 33);
+
+    cv::waitKey(100);
+
 
     return 0;
 }
