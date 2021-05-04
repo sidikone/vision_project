@@ -7,27 +7,29 @@ VideoReader::VideoReader(string path){
     _video.open(path);
 }
 
-/*
-void getVideo(VideoCapture& ref_out){
-    VideoCapture temp_video;
-    ref_out = temp_video;
 
-}
-
-
-VideoCapture* getVideo(){
-    VideoCapture temp_video;
-    return &temp_video;
-}
-*/
-
-void VideoReader::showVideo(string window_name, int delta){
+void VideoReader::showVideo(string window_name, int delta, string typ){
 
     Mat imag;
+    Mat* imag_ptr;
+
     for (;;){
         _video >> imag;
         if (imag.empty()) break;
-        imshow(window_name, imag);
+
+        if (typ == "gray"){
+            ImagReader imag_1(imag);
+            imag_ptr = imag_1.color2gray();
+            imshow(window_name, *imag_ptr);
+        }
+
+        else if (typ == "hsv") {
+            ImagReader imag_1(imag);
+            imag_ptr = imag_1.color2hsv();
+            imshow(window_name, *imag_ptr);
+        }
+
+        else imshow(window_name, imag);
         if (waitKey(delta) >=0) break;
     }
 }

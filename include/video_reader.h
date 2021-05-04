@@ -1,6 +1,7 @@
 #ifndef VIDEO_READER_H
 #define VIDEO_READER_H
 
+#include "image_reader.h"
 #include <opencv2/highgui.hpp>
 
 #include <iostream>
@@ -16,9 +17,7 @@ protected:
 public:
     VideoReader(){};
     VideoReader(std::string);
- /*   void getVideo(cv::VideoCapture& );
-    cv::VideoCapture* getVideo();*/
-    void showVideo(std::string="Video", int=33);
+    void showVideo(std::string="Video", int=33, std::string="clr");
     ~VideoReader();
 
 };
