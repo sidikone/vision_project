@@ -5,6 +5,7 @@
 #include <string>
 #include <opencv2/highgui.hpp>
 
+#include "histogram.h"
 #include "image_reader.h"
 #include "video_reader.h"
 #include "cam_reader.h"
@@ -15,6 +16,8 @@ namespace TutoLib{
     void image_reader_tutorial();
     void video_reader_tutorial();
     void camera_reader_tutorial();
+
+    void histogram();
 
 };
 

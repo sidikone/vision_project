@@ -69,3 +69,39 @@ void TutoLib::camera_reader_tutorial(){
     cam_1.showVideo("Camera", 33, "hsv");
     destroyWindow("Camera");
 }
+
+
+void TutoLib::histogram(){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+
+    // Get the file name into a pointer
+    string *img_name_ptr = &data_set.image_name;
+
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+
+    // Read Image from path
+    ImagReader image_1(data_set.image_path);
+    Mat imag;
+    Mat *imag_ptr;
+
+    // Get image using pointer or reference
+    imag_ptr = image_1.getImage();  
+//    image_1.getImage(imag);
+    image_1.color2gray(imag);
+
+    imshow(img_name_ref, imag);       // 1. reference 
+    cv::waitKey(1000);
+
+    Mat imag_out;
+
+    HistoGram hist_1(imag);
+    hist_1.settings(50);
+    hist_1.computeHistogram(imag_out);
+    cv::waitKey(1000);
+
+    destroyWindow(img_name_ref);
+}

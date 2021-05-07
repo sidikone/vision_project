@@ -20,7 +20,7 @@ void ImagReader::openImage(cv::Mat& ref_in){
 
 void ImagReader::convert_gray(){
     gray_trig = true;
-    cvtColor(_image, _image_gray, COLOR_RGB2GRAY);
+    cvtColor(_image, _image_gray, COLOR_BGR2GRAY);
 }
 
 
