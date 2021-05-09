@@ -1,7 +1,9 @@
 #include "histogram.h"
 #include <iostream>
+
 using namespace cv;
 using namespace std;
+using namespace matplot;
 
 HistoGram::HistoGram(Mat &imag_in){
     _image = imag_in;
@@ -63,11 +65,32 @@ void HistoGram::compute_multiple_histogram(){
 
 
 void HistoGram::display_single_histogram(){
-
+    
+    bar(_x_hist, _y_hist);
+    title("Image histogram");
+    xlabel("Niveau de gris");
+    ylabel("Occurence");
+    show();
 }
 
 
 void HistoGram::display_multiple_histogram(){
+
+    subplot(3, 1, 0);
+    bar(_x_hist, _y_bgr_hist[0])->face_color("b");;
+    title("Blue channel");
+
+    subplot(3, 1, 1);
+    bar(_x_hist, _y_bgr_hist[1])->face_color("g");;
+    title("Green channel");
+
+    subplot(3, 1, 2);
+    bar(_x_hist, _y_bgr_hist[2])->face_color("r");;
+    title("Red channel");
+    xlabel("Niveau de gris");
+    ylabel("Occurence");
+
+    show();
     
 }
 
@@ -93,7 +116,6 @@ void HistoGram::computeHistogram(string channel, bool display){
 
     }
     else{
-        cout << "Computing the grayscale histogram" << endl;
         compute_single_histogram();
         if (display) display_single_histogram();
         
@@ -131,9 +153,3 @@ void HistoGram::getHistogram(xy_vector_ptr &hist_out){
 void HistoGram::getHistogram(xy_bgr_vector_ptr &hist_out){
     hist_out = _xy_bgr_hist_ptr;
 }
-
-/*
-cv::Mat* HistoGram::computeHistogram(string=true){
-    
-    cout << "hello from histogram" << endl;
-}*/

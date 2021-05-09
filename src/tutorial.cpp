@@ -99,9 +99,9 @@ void TutoLib::histogram(){
     Mat imag_out;
 
     HistoGram hist_1(imag);
-    hist_1.settings(25);
+    hist_1.settings(100);
     hist_1.computeHistogram();
-    cv::waitKey(1000);
-
+    cv::waitKey(100);
     destroyWindow(img_name_ref);
+    
 }

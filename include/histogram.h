@@ -8,6 +8,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <matplot/matplot.h>
 
 //using xy_vector = std::pair <std::map<std::string, std::vector<std::string>>, std::map<std::string, std::vector<float>>>;
 

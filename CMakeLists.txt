@@ -8,10 +8,11 @@
 # Basic setup
 
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set (PJName Vision)
+set (PJName vision)
+set (APPName visionApps)
 project(${PJName})
 
 # -------------------------------------------------------
@@ -19,6 +20,7 @@ project(${PJName})
 
 #find_library(OpenCV REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(Matplot++ REQUIRED)
 # -------------------------------------------------------
 # src file
 
@@ -31,20 +33,23 @@ set (INCLUDE include)
 include_directories(
     ${INCLUDE}
     ${OpenCV_INCLUDE_DIRS}
-                    )
+                    
+)
 
 # --------------------------------------------------------
 # Executable
 
-add_executable(${PJName} ${SRCS})
+add_executable(${APPName} ${SRCS})
 
 # --------------------------------------------------------
 # Library
 
-add_library(lib ${SRCS})
+add_library(${PJName} SHARED ${SRCS})
 
 # --------------------------------------------------------
 # Target link
 
-target_link_libraries(${PJName} lib
-                                ${OpenCV_LIBS})
+target_link_libraries(${APPName} ${PJName}
+                                Matplot++::matplot
+                                ${OpenCV_LIBS}
+)
