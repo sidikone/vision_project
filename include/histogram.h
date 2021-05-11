@@ -32,6 +32,8 @@ private:
     cv::Mat* _image_ptr;
 
     cv::Mat _single_hist;
+    cv::Mat _equalized_hist;
+
     std::vector <cv::Mat> _multiple_hist;
 
     std::vector <float> _x_hist;
@@ -53,6 +55,9 @@ private:
     void compute_single_histogram();
     void compute_multiple_histogram();
 
+    void compute_single_histogram_equalization(cv::Mat&);
+    void compute_multiple_histogram_equalization(cv::Mat&, std::string);
+
     void display_single_histogram();
     void display_multiple_histogram();
 
@@ -64,7 +69,8 @@ public:
 
     void openImag(cv::Mat&);
     void settings(int=256, int=0, int=256);
-    void computeHistogram(std::string="grayscale", bool=true);
+    void computeHistogram(bool=true);
+    void histogramEqualization(cv::Mat&, bool, std::string);
     
     void getHistogram(cv::Mat&);
     void getHistogram(std::vector <cv::Mat>&);

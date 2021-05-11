@@ -26,7 +26,7 @@ void ImagReader::convert_gray(){
 
 void ImagReader::convert_hsv(){
     hsv_trig = true;
-    cvtColor(_image, _image_hsv, COLOR_RGB2HSV);
+    cvtColor(_image, _image_hsv, COLOR_BGR2HSV);
 }
 
 

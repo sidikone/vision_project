@@ -71,6 +71,51 @@ void HistoGram::compute_multiple_histogram(){
     _xy_bgr_hist_ptr.red.y_vector = &_y_bgr_hist[2];
 }
 
+void HistoGram::compute_single_histogram_equalization(cv::Mat& im_out){
+    equalizeHist(_image, im_out);
+};
+void HistoGram::compute_multiple_histogram_equalization(cv::Mat& im_out, string l_type){
+
+    Mat image_out;
+    vector <Mat> equa_imag_comp;
+    vector <Mat> raw_imag_comp;
+
+    if (l_type =="hsv"){
+
+        Mat ima;
+        Mat im_hsv;
+        Mat im_merge;
+
+        cvtColor(_image, im_hsv, COLOR_BGR2HSV);
+        split(im_hsv, raw_imag_comp);
+        equalizeHist(raw_imag_comp[2], ima);
+
+        equa_imag_comp.push_back(raw_imag_comp[0]);
+        equa_imag_comp.push_back(raw_imag_comp[1]);
+        equa_imag_comp.push_back(ima);
+
+        merge(equa_imag_comp, im_merge);
+        cvtColor(im_merge, image_out, COLOR_HSV2BGR);
+    }
+
+    else{
+        split(_image, raw_imag_comp);
+        for (int num=0; num <3; num++){
+            Mat ima;
+            equalizeHist(raw_imag_comp[num], ima);
+            equa_imag_comp.push_back(ima);
+        }
+        merge(equa_imag_comp, image_out);
+    }
+
+  //  merge(equa_imag_comp, image_out);
+    im_out = image_out;
+};
+
+
+
+
+
 
 void HistoGram::display_single_histogram(){
     
@@ -114,20 +159,46 @@ void HistoGram::settings(int bins, int hist_min, int hist_max){
     histRange = range;
 }
 
-void HistoGram::computeHistogram(string channel, bool display){
+void HistoGram::computeHistogram(bool display){
 
     if (_image.channels()== 3){
         compute_multiple_histogram();
         if (display) display_multiple_histogram();
-
     }
     else{
         compute_single_histogram();
         if (display) display_single_histogram();
         
     }
-
 }
+
+void HistoGram::histogramEqualization(Mat &imag_out, bool display, string typ){
+
+    if (_image.channels()== 3){
+        
+        string local_typ = typ;
+        Mat l_image;
+        compute_multiple_histogram_equalization(l_image, local_typ);
+        imag_out = l_image;
+        if (display){
+            cv::imshow("Image after histogram equalization", l_image);
+            cv::waitKey(0);
+            destroyWindow("Image after histogram equalization");
+        }
+    }
+    else{
+
+        Mat l_image;
+        compute_single_histogram_equalization(l_image);
+        imag_out = l_image;
+        if (display){
+            cv::imshow("Image after histogram equalization", l_image);
+            cv::waitKey(0);
+            destroyWindow("Image after histogram equalization");
+        }
+    }
+}
+
 
 void HistoGram::getHistogram(Mat &hist_out){
     hist_out = _single_hist;
