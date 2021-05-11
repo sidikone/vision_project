@@ -44,7 +44,9 @@ public:
 
     std::vector<cv::Mat>* getImagComponents(std::string="clr");
     void getImagComponents(std::vector<cv::Mat>&, std::string="clr");
-    
+
+
+    void imageInfo();
 
     ~ImagReader();
 };

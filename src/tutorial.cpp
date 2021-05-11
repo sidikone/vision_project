@@ -85,21 +85,24 @@ void TutoLib::histogram(){
 
     // Read Image from path
     ImagReader image_1(data_set.image_path);
+    image_1.imageInfo();
     Mat imag;
     Mat *imag_ptr;
 
     // Get image using pointer or reference
     imag_ptr = image_1.getImage();  
-//    image_1.getImage(imag);
+    image_1.getImage(imag);
     image_1.color2gray(imag);
+    
+//    image_1.getImage(imag);
 
-    imshow(img_name_ref, imag);       // 1. reference 
+    imshow(img_name_ref, *imag_ptr);       // 1. reference 
     cv::waitKey(1000);
 
     Mat imag_out;
 
     HistoGram hist_1(imag);
-    hist_1.settings(100);
+    hist_1.settings(300);
     hist_1.computeHistogram();
     cv::waitKey(100);
     destroyWindow(img_name_ref);

@@ -100,6 +100,16 @@ void ImagReader::getImagComponents(vector<Mat>& out_ref, string typ){
 }
 
 
+void ImagReader::imageInfo(){
+    cout << "\nImage infos" << endl;
+    cout << "-----------" << endl;
+    cout << "Rows number = " << _image.rows <<endl;
+    cout << "Cols number = " << _image.cols << endl;
+    cout << "Channels number = " << _image.channels() << endl;
+    cout << "-----------\n" << endl;
+}
+
+
 ImagReader::~ImagReader(){
  //   destroyWindow(_window_name);
 }

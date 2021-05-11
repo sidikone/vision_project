@@ -7,9 +7,6 @@ using namespace matplot;
 
 HistoGram::HistoGram(Mat &imag_in){
     _image = imag_in;
-//    cout << "hello from histogram" << endl;
-//    imshow("window_name", _image);
-
 }
 
 
@@ -40,18 +37,29 @@ void HistoGram::compute_multiple_histogram(){
     _multpl_trig = true;
     compute_x_histogram();
 
-    vector<Mat> bgr;
+    vector <Mat> bgr;
     split(_image, bgr);
 
-    calcHist(&bgr[0], 1, 0, Mat(), _multiple_hist[0], 1, &numbins, &histRange);
-    calcHist(&bgr[1], 1, 0, Mat(), _multiple_hist[1], 1, &numbins, &histRange);
-    calcHist(&bgr[2], 1, 0, Mat(), _multiple_hist[2], 1, &numbins, &histRange);
+    for (int num=0; num <3; num++){
+        Mat ima;
+        calcHist(&(bgr[num]), 1, 0, Mat(), ima, 1, &numbins, &histRange);
+        _multiple_hist.push_back(ima);
+    }
+
+    vector<float> b_hist;
+    vector<float> g_hist;
+    vector <float> r_hist;
 
     for (int count = 0; count < numbins; count++){
-        _y_bgr_hist[0].push_back(_multiple_hist[0].at<float>(count));
-        _y_bgr_hist[1].push_back(_multiple_hist[1].at<float>(count));
-        _y_bgr_hist[2].push_back(_multiple_hist[2].at<float>(count));
+        b_hist.push_back(_multiple_hist[0].at<float>(count));
+        g_hist.push_back(_multiple_hist[1].at<float>(count));
+        r_hist.push_back(_multiple_hist[2].at<float>(count));
     }
+
+    _y_bgr_hist.push_back(b_hist);
+    _y_bgr_hist.push_back(g_hist);
+    _y_bgr_hist.push_back(r_hist);
+
 
     _xy_bgr_hist_ptr.blue.x_vector = &_x_hist;
     _xy_bgr_hist_ptr.blue.y_vector = &_y_bgr_hist[0];
@@ -78,15 +86,15 @@ void HistoGram::display_multiple_histogram(){
 
     subplot(3, 1, 0);
     bar(_x_hist, _y_bgr_hist[0])->face_color("b");;
-    title("Blue channel");
+    title("Blue - Green - Red Histogram");
+    ylabel("Occurence");
 
     subplot(3, 1, 1);
     bar(_x_hist, _y_bgr_hist[1])->face_color("g");;
-    title("Green channel");
+    ylabel("Occurence");
 
     subplot(3, 1, 2);
     bar(_x_hist, _y_bgr_hist[2])->face_color("r");;
-    title("Red channel");
     xlabel("Niveau de gris");
     ylabel("Occurence");
 
@@ -96,8 +104,6 @@ void HistoGram::display_multiple_histogram(){
 
 
 void HistoGram::openImag(Mat &image_in){
-    
-    cout << "hello from histogram" << endl;
 }
 
 void HistoGram::settings(int bins, int hist_min, int hist_max){
@@ -110,7 +116,7 @@ void HistoGram::settings(int bins, int hist_min, int hist_max){
 
 void HistoGram::computeHistogram(string channel, bool display){
 
-    if (channel == "bgr"){
+    if (_image.channels()== 3){
         compute_multiple_histogram();
         if (display) display_multiple_histogram();
 
