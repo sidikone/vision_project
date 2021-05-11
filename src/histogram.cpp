@@ -114,9 +114,6 @@ void HistoGram::compute_multiple_histogram_equalization(cv::Mat& im_out, string 
 
 
 
-
-
-
 void HistoGram::display_single_histogram(){
     
     bar(_x_hist, _y_hist);
