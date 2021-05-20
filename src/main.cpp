@@ -11,7 +11,9 @@ using namespace matplot;
 
 int main(int argc, char *argv[]){
 
-    TutoLib::histogram();
+//    TutoLib::histogram_tutorial();
+//    TutoLib::image_reader_tutorial();
+    TutoLib::image_writer_tutorial(true);
     
     return 0;
 }

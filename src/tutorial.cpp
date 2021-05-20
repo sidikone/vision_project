@@ -9,14 +9,12 @@ void TutoLib::image_reader_tutorial(){
     // Dataset path
     Inputs data_set;
     SetInput::Init(&data_set);
-
     // Get the file name into a pointer
     string *img_name_ptr = &data_set.image_name;
-
     // Get the file name into a reference
     string &img_name_ref = data_set.image_name;
 
-    // Read Image from path
+    // Read Image from path using string constructor
     ImagReader image_1(data_set.image_path);
     Mat imag;
     Mat *imag_ptr;
@@ -71,7 +69,31 @@ void TutoLib::camera_reader_tutorial(){
 }
 
 
-void TutoLib::histogram(){
+void TutoLib::image_writer_tutorial(bool disp){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+    // Read Image from path using string constructor
+    ImagReader image_1(data_set.image_path);
+
+    Mat imag;
+    image_1.color2gray(imag);
+
+    if (disp){
+        imshow(img_name_ref, imag);
+        waitKey(1000);
+        destroyWindow(img_name_ref);
+    }
+
+    ImagWriter save_1(imag);
+    save_1.saveImage("./../out/images/imag_out.tif");
+}
+
+
+void TutoLib::histogram_tutorial(){
 
     // Dataset path
     Inputs data_set;

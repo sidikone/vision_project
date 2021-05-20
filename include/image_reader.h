@@ -9,6 +9,7 @@
 #include <vector>
 
 class ImagReader{
+
 private:
 
     cv::Mat _image;
@@ -27,28 +28,38 @@ private:
 
 public:
 
+    // Class Constructor
     ImagReader(){};
     ImagReader(std::string);
     ImagReader(cv::Mat&);
 
     void openImage(cv::Mat&);
     void showImage(std::string="Image", std::string="raw");
+
+    // Image getter
     void getImage(cv::Mat&);
     cv::Mat* getImage();
 
+    // Color image conversion
     cv::Mat* color2gray();
     void color2gray(cv::Mat&);
 
+    // Color Image conversion hsv
     cv::Mat* color2hsv();
     void color2hsv(cv::Mat&);
 
+    // Image component
     std::vector<cv::Mat>* getImagComponents(std::string="clr");
     void getImagComponents(std::vector<cv::Mat>&, std::string="clr");
 
-
+    // Image Info
     void imageInfo();
 
-    ~ImagReader();
+    virtual ~ImagReader();
+
+
+    // friend class
+
 };
 
 #endif
