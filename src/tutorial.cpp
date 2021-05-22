@@ -90,6 +90,10 @@ void TutoLib::image_writer_tutorial(bool disp){
 
     ImagWriter save_1(imag);
     save_1.saveImage("./../out/images/imag_out.tif");
+
+    ImagWriter save_2(image_1, "hsv");
+//    save_2.open(image_1);
+    save_2.saveImage("./../out/images/imag_out_2.png");
 }
 
 

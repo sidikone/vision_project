@@ -4,9 +4,13 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include "image_writer.h" // for friendly function
+
 #include <iostream>
 #include <string>
 #include <vector>
+
+class ImagWriter;
 
 class ImagReader{
 
@@ -57,8 +61,9 @@ public:
 
     virtual ~ImagReader();
 
-
-    // friend class
+    friend void ImagWriter::__set_data_from_ImagReader(ImagReader&, std::string);
+    friend ImagWriter::ImagWriter(ImagReader&, std::string);
+    friend void ImagWriter::open(ImagReader&, std::string);
 
 };
 

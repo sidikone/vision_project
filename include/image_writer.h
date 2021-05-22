@@ -8,15 +8,22 @@
 
 #include <iostream>
 
+class ImagReader; // for friendly function
 
 class ImagWriter {
 
 private:
     cv::Mat _imag;
 
+
 public:
+    void __set_data_from_ImagReader(ImagReader&, std::string);
+    ImagWriter(){};
     ImagWriter(cv::Mat&);
+    ImagWriter(ImagReader&, std::string);
+
     void saveImage(std::string);
+    void open(ImagReader&, std::string);
 
 };
 
