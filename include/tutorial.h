@@ -10,7 +10,7 @@
 #include "video_reader.h"
 
 #include "image_writer.h"
-
+#include "low_pass.h"
 #include "cam_reader.h"
 #include "param.h"
 
@@ -24,7 +24,11 @@ namespace TutoLib{
 // Writer tutorial
     void image_writer_tutorial(bool);
 
+// Histogram tutorial
     void histogram_tutorial();
+
+// Filter tutorial
+    void low_pass_filter_tutorial(bool);
 
 };
 

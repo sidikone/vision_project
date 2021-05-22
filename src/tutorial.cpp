@@ -97,6 +97,44 @@ void TutoLib::image_writer_tutorial(bool disp){
 }
 
 
+void TutoLib::low_pass_filter_tutorial(bool disp){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+    // Read Image from path using string constructor
+    ImagReader image_1(data_set.image_path);
+
+    Mat imag;
+    Mat imag_out_gb;
+    image_1.color2gray(imag);
+
+    LowPass low_pass_1(imag);
+//    low_pass_1.compute_gaussian_blur(imag_out, 5, 5, 0, 0);
+//    low_pass_1.compute_gaussian_blur(imag_out_gb, 3, 3);
+//    low_pass_1.compute_blur(imag_out_gb, 3, 3);
+
+    low_pass_1.compute_median(imag_out_gb, 21);
+
+    if (disp){
+        imshow(img_name_ref, imag);
+        imshow(img_name_ref+" gaussian blur", imag_out_gb);
+        waitKey(1000);
+        waitKey(0);
+        destroyWindow(img_name_ref);
+    }
+
+
+
+ /*   save_1.saveImage("./../out/images/imag_out.tif");
+
+    ImagWriter save_2(image_1, "hsv");
+    save_2.saveImage("./../out/images/imag_out_2.png");*/
+}
+
+
 void TutoLib::histogram_tutorial(){
 
     // Dataset path
