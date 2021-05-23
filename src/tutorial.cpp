@@ -108,19 +108,20 @@ void TutoLib::low_pass_filter_tutorial(bool disp){
     ImagReader image_1(data_set.image_path);
 
     Mat imag;
-    Mat imag_out_gb;
-    image_1.color2gray(imag);
+    Mat imag_out;
+//    image_1.color2gray(imag);
+    image_1.getImage(imag);
 
-    LowPass low_pass_1(imag);
-//    low_pass_1.compute_gaussian_blur(imag_out, 5, 5, 0, 0);
-//    low_pass_1.compute_gaussian_blur(imag_out_gb, 3, 3);
-//    low_pass_1.compute_blur(imag_out_gb, 3, 3);
-
-    low_pass_1.compute_median(imag_out_gb, 21);
+    SmooThing smoot_1(imag);
+//    smoot_1.compute_gaussian_blur(imag_out, 11, 11, 0, 0);
+//    smoot_1.compute_gaussian_blur(imag_out, 11, 11);
+//    smoot_1.compute_blur(imag_out, 11, 11);
+//    smoot_1.compute_median_blur(imag_out, 11);
+    smoot_1.compute_bilateral_filter_blur(imag_out, 5, 200.0, 200.0);
 
     if (disp){
         imshow(img_name_ref, imag);
-        imshow(img_name_ref+" gaussian blur", imag_out_gb);
+        imshow(img_name_ref+" gaussian", imag_out);
         waitKey(1000);
         waitKey(0);
         destroyWindow(img_name_ref);

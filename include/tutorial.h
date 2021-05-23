@@ -10,7 +10,7 @@
 #include "video_reader.h"
 
 #include "image_writer.h"
-#include "low_pass.h"
+#include "smoothing.h"
 #include "cam_reader.h"
 #include "param.h"
 
