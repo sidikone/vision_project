@@ -126,13 +126,6 @@ void TutoLib::smoothing_tutorial(bool disp){
         waitKey(0);
         destroyWindow(img_name_ref);
     }
-
-
-
- /*   save_1.saveImage("./../out/images/imag_out.tif");
-
-    ImagWriter save_2(image_1, "hsv");
-    save_2.saveImage("./../out/images/imag_out_2.png");*/
 }
 
 
@@ -152,11 +145,12 @@ void TutoLib::image_binary_tutorial(bool disp){
     image_1.color2gray(imag);
 
     ImagBinary binary_1(imag);
-    binary_1.binary_threshold(imag_out, "bin", 100, 225);
+    binary_1.binary_threshold(imag_out, "bin", 100, 255);
 
     ImagBinary binary_2(imag);
-    binary_2.binary_threshold(imag_out_2, "to_zero_inv", 100, 255);
-
+//    binary_2.binary_threshold(imag_out_2, "bin_otsu", 225, 255);
+//    binary_2.gaussian_adaptive_binary_threshold(imag_out_2, "bin", 255, 21, 5);
+    binary_2.mean_adaptive_binary_threshold(imag_out_2, "bin", 150, 21, 5);
 
     if (disp){
         imshow(img_name_ref, imag);
@@ -166,13 +160,6 @@ void TutoLib::image_binary_tutorial(bool disp){
         waitKey(0);
         destroyWindow(img_name_ref);
     }
-
-
-
- /*   save_1.saveImage("./../out/images/imag_out.tif");
-
-    ImagWriter save_2(image_1, "hsv");
-    save_2.saveImage("./../out/images/imag_out_2.png");*/
 }
 
 

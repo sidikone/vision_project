@@ -16,6 +16,9 @@ public:
     ImagBinary(cv::Mat&);
 
     void binary_threshold(cv::Mat&, std::string, double, double);
+    void gaussian_adaptive_binary_threshold(cv::Mat&, std::string, double, int, double);
+    void mean_adaptive_binary_threshold(cv::Mat&, std::string, double, int, double);
+
 
 };
 
