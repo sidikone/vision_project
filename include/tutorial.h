@@ -11,6 +11,8 @@
 
 #include "image_writer.h"
 #include "smoothing.h"
+#include "edging.h"
+
 #include "image_binay.h"
 #include "cam_reader.h"
 #include "param.h"
@@ -28,12 +30,14 @@ namespace TutoLib{
 // Histogram tutorial
     void histogram_tutorial();
 
-
 // Binary tutorial
     void image_binary_tutorial(bool);
 
 // Smoothing tutorial
     void smoothing_tutorial(bool);
+
+// Edging tutorial
+    void edging_tutorial(bool);
 
 };
 
