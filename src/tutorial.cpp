@@ -161,6 +161,39 @@ void TutoLib::edging_tutorial(bool disp){
 }
 
 
+void TutoLib::morphology_tutorial(bool disp){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+    // Read Image from path using string constructor
+    ImagReader image_1(data_set.image_path);
+
+    Mat imag;
+    Mat imag_trans;
+    Mat imag_out;
+    image_1.color2gray(imag);
+
+    MorPhology morph_1(imag);
+/*    SmooThing smoot_1(imag);
+    smoot_1.compute_gaussian_blur(imag_trans, 5, 5);
+    EdGing edge_1(imag_trans);*/
+    
+//    edge_1.compute_canny_edge_detector(imag_out, 7, 100, 300);
+//    edge_1.compute_laplacian_edge_detector(imag_out, 5, 1, 0);
+//    edge_1.compute_sobel_edge_detector(imag_out, 5, 1, 0);
+
+    if (disp){
+        imshow(img_name_ref, imag);
+ //       imshow(img_name_ref+" edging", imag_out);
+        waitKey(1000);
+        waitKey(0);
+        destroyWindow(img_name_ref);
+    }
+}
+
 void TutoLib::image_binary_tutorial(bool disp){
 
     // Dataset path
