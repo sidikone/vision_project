@@ -15,6 +15,10 @@ public:
     EdGing(){};
     EdGing(cv::Mat&);
 
+    void compute_canny_edge_detector(cv::Mat&, int, double, double);
+    void compute_sobel_edge_detector(cv::Mat&, int, int, int);
+    void compute_laplacian_edge_detector(cv::Mat&, int, int, int);
+
 };
 
 
