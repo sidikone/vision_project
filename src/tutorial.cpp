@@ -209,22 +209,27 @@ void TutoLib::segmentation_tutorial(bool disp){
     string &img_name_ref = data_set.image_name;
     // Read Image from path using string constructor
     ImagReader image_1(data_set.image_path);
+    ImagReader  image_2("../data/images/light.pgm");
 
     Mat imag;
-    Mat imag_med;
+    Mat imag_ref;
     Mat imag_out;
     image_1.color2gray(imag);
+    image_2.color2gray(imag_ref);
 
 //    ImagBinary binary_1(imag);
 //    binary_1.binary_threshold(imag_out, "bin", 100, 255);
 //    binary_1.mean_adaptive_binary_threshold(imag_med, "bin_inv", 255, 11, 11);
-    SegmenTation seg_1;
-    SegmenTation seg2(imag_med);
 
+    SegmenTation seg_1(imag);
+    seg_1.compute_background_removing(imag_ref,"ratio");
+    seg_1.compute_background_removing("ratio", 3);
+    seg_1.get_image_after_background_removing(imag_out);
 
     if (disp){
         imshow(img_name_ref, imag);
- //       imshow(img_name_ref+" bin", imag_med);
+        imshow(img_name_ref + " background", imag_ref);
+        imshow(img_name_ref+" sub", imag_out);
  //       imshow(img_name_ref+" morph", imag_out);
         waitKey(1000);
         waitKey(0);
