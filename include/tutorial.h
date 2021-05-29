@@ -13,6 +13,7 @@
 #include "smoothing.h"
 #include "edging.h"
 #include "morphology.h"
+#include "segmentation.h"
 
 #include "image_binay.h"
 #include "cam_reader.h"
@@ -42,6 +43,9 @@ namespace TutoLib{
 
 // Morphology tutorial
     void morphology_tutorial(bool);
+
+// Segmentation tutorial
+    void segmentation_tutorial(bool);
 
 };
 

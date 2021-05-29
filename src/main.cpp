@@ -17,7 +17,8 @@ int main(int argc, char *argv[]){
 //    TutoLib::smoothing_tutorial(true);
 //    TutoLib::image_binary_tutorial(true);
 //    TutoLib::edging_tutorial(true);
-    TutoLib::morphology_tutorial(true);
+//    TutoLib::morphology_tutorial(true);
+    TutoLib::segmentation_tutorial(true);
     
     return 0;
 }

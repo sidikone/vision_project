@@ -199,6 +199,39 @@ void TutoLib::morphology_tutorial(bool disp){
     }
 }
 
+
+void TutoLib::segmentation_tutorial(bool disp){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+    // Read Image from path using string constructor
+    ImagReader image_1(data_set.image_path);
+
+    Mat imag;
+    Mat imag_med;
+    Mat imag_out;
+    image_1.color2gray(imag);
+
+//    ImagBinary binary_1(imag);
+//    binary_1.binary_threshold(imag_out, "bin", 100, 255);
+//    binary_1.mean_adaptive_binary_threshold(imag_med, "bin_inv", 255, 11, 11);
+    SegmenTation seg_1;
+    SegmenTation seg2(imag_med);
+
+
+    if (disp){
+        imshow(img_name_ref, imag);
+ //       imshow(img_name_ref+" bin", imag_med);
+ //       imshow(img_name_ref+" morph", imag_out);
+        waitKey(1000);
+        waitKey(0);
+        destroyWindow(img_name_ref);
+    }
+}
+
 void TutoLib::image_binary_tutorial(bool disp){
 
     // Dataset path
