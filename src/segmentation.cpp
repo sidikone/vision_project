@@ -23,6 +23,17 @@ void SegmenTation::compute_background_removing(Mat& ground, string typ){
 }
 
 
+void SegmenTation::randomColor(Scalar& color_out){
+
+    Scalar color(
+        (double)std::rand() / RAND_MAX * 255,
+        (double)std::rand() / RAND_MAX * 255,
+        (double)std::rand() / RAND_MAX * 255);
+    
+    color_out = color;
+}
+
+
 void SegmenTation::compute_background_removing(string typ, int s_ratio){
 
     Mat estim_back;
@@ -40,20 +51,47 @@ void SegmenTation::compute_image_binerization(std::string typ, double value, dou
 
 
 void SegmenTation::compute_image_cropping(int x_abs, int y_abs){
+    
     int width = _imag.cols - 2*x_abs;
     int height = _imag.rows - 2*y_abs;
 
-    cout << _imag.cols <<"\t"<<_imag.rows << endl;
-    cout << width << "\t"<< height <<endl;
-
+    Mat im_crop;
     Rect rect_1 (x_abs, y_abs, width, height);
-    _im_bin = _im_bin(rect_1);
+    Mat _im_crop_ref (_im_bin, rect_1);
+    _im_crop_ref.copyTo(im_crop);
+
+    Mat _new_im;
+    copyMakeBorder(im_crop, _im_bin, y_abs, y_abs, x_abs, x_abs, BORDER_CONSTANT);
+}
+
+
+void SegmenTation::display_object_segmenation(bool disp){
+    
+    srand(time(0));
+    _segment = Mat::zeros(_imag.rows, _imag.cols, CV_8UC3);
+    
+    for(auto i=1; i<nb_obj; i++){
+        Scalar random_color;
+        randomColor(random_color);
+        Mat mask = (_labels==i);
+        _segment.setTo(random_color, mask);
+    }
+
+    seg_trig = true;
+    if (disp) {
+        imshow("Segmenation result", _segment);
+        waitKey(0);
+    }
+}
+
+
+void SegmenTation::infos(){
+    cout << "there is " << nb_obj-1 << " elements in the scene \n" << endl;
 }
 
 
 void SegmenTation::connected_components_image_segmenation(){
     nb_obj = connectedComponents(_im_bin, _labels);
-    cout << nb_obj << endl;
 }
 
 
@@ -67,3 +105,14 @@ void SegmenTation::get_binary_image(Mat& imag_out){
     
     imag_out = _im_bin;
 }
+
+    void SegmenTation::get_segment_labels(cv::Mat& imag_out){
+    
+    imag_out = _labels;
+    };
+
+
+    void SegmenTation::get_segmented_image(cv::Mat& imag_out){
+    if (!seg_trig) display_object_segmenation(false);
+    imag_out = _segment;
+    };
