@@ -213,7 +213,9 @@ void TutoLib::segmentation_tutorial(bool disp){
 
     Mat imag;
     Mat imag_ref;
+    Mat imag_bin;
     Mat imag_out;
+    
     image_1.color2gray(imag);
     image_2.color2gray(imag_ref);
 
@@ -223,13 +225,22 @@ void TutoLib::segmentation_tutorial(bool disp){
 
     SegmenTation seg_1(imag);
     seg_1.compute_background_removing(imag_ref,"ratio");
-    seg_1.compute_background_removing("ratio", 3);
+//    seg_1.compute_background_removing("ratio", 3);
+
+    seg_1.compute_image_binerization("bin", 50, 255);
     seg_1.get_image_after_background_removing(imag_out);
+    seg_1.get_binary_image(imag_bin);
+    seg_1.compute_image_cropping(10, 10);
+    seg_1.connected_components_image_segmenation();
+
+
+
 
     if (disp){
         imshow(img_name_ref, imag);
-        imshow(img_name_ref + " background", imag_ref);
         imshow(img_name_ref+" sub", imag_out);
+        imshow(img_name_ref + " binary", imag_bin);
+
  //       imshow(img_name_ref+" morph", imag_out);
         waitKey(1000);
         waitKey(0);
