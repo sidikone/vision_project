@@ -85,15 +85,57 @@ void SegmenTation::display_object_segmenation(bool disp){
 }
 
 
+void SegmenTation::display_contour_segmenation(bool disp){
+    
+    srand(time(0));
+    _contours_imag = Mat::zeros(_imag.rows, _imag.cols, CV_8UC3);
+
+    for(auto i=0; i<_contours.size(); i++){
+        Scalar random_color;
+        randomColor(random_color);
+        drawContours(_contours_imag, _contours, i, random_color);
+    }
+
+    contour_trig = true;
+    if (disp) {
+        imshow("Contour finders result", _contours_imag);
+        waitKey(0);
+    }
+}
+
+
+void SegmenTation::display_object_segmenation(){
+    display_object_segmenation(true);
+}
+
+
+void SegmenTation::display_contour_segmenation(){
+    display_contour_segmenation(true);
+}
+
+
 void SegmenTation::infos(){
     cout << "there is " << nb_obj-1 << " elements in the scene \n" << endl;
 }
 
 
-void SegmenTation::connected_components_image_segmenation(){
-    nb_obj = connectedComponents(_im_bin, _labels);
+void SegmenTation::connected_components_image_segmenation(string typ){
+    if (typ == "stats") {
+        nb_obj = connectedComponentsWithStats(_im_bin, _labels, _stats, _centroids);
+        stats_trig = true;
+    }
+    else nb_obj = connectedComponents(_im_bin, _labels);
 }
 
+
+void SegmenTation::find_contour_image_segmentation(string typ) {
+
+    if (typ == "all-1") findContours(_im_bin, _contours, _hierarchy, RETR_LIST, CHAIN_APPROX_SIMPLE);
+    if (typ == "all-2") findContours(_im_bin, _contours, _hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE);
+    if (typ == "all-3") findContours(_im_bin, _contours, _hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+    else findContours(_im_bin, _contours, _hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+}
 
 void SegmenTation::get_image_after_background_removing(Mat& imag_out){
     
@@ -106,13 +148,34 @@ void SegmenTation::get_binary_image(Mat& imag_out){
     imag_out = _im_bin;
 }
 
-    void SegmenTation::get_segment_labels(cv::Mat& imag_out){
+void SegmenTation::get_segment_labels(cv::Mat& imag_out){
     
     imag_out = _labels;
-    };
+};
 
 
-    void SegmenTation::get_segmented_image(cv::Mat& imag_out){
+void SegmenTation::get_segmented_image(cv::Mat& imag_out){
     if (!seg_trig) display_object_segmenation(false);
     imag_out = _segment;
-    };
+};
+
+void SegmenTation::get_labels_centroids(Mat& imag_out){
+    
+    imag_out = _centroids;
+}
+
+void SegmenTation::get_labels_stats(cv::Mat& imag_out){
+    
+    imag_out = _stats;
+};
+
+
+void SegmenTation::get_contours(PointVect& data_out){
+    
+    data_out = _contours;
+};
+
+void SegmenTation::get_contour_image(cv::Mat& imag_out){
+    if (!contour_trig) display_contour_segmenation(false);
+    imag_out = _contours_imag;
+};

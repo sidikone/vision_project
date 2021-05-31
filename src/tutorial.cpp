@@ -217,6 +217,9 @@ void TutoLib::segmentation_tutorial(bool disp){
     Mat imag_sub;
     Mat imag_bin;
     Mat imag_out;
+    Mat imag_out_2;
+
+ //   PointVect contours;
     
     image_1.color2gray(imag);
     image_2.color2gray(imag_ref);
@@ -229,10 +232,15 @@ void TutoLib::segmentation_tutorial(bool disp){
     seg_1.get_image_after_background_removing(imag_sub);
     seg_1.compute_image_cropping(15, 15);
     seg_1.get_binary_image(imag_bin);
-    seg_1.connected_components_image_segmenation();
+    seg_1.connected_components_image_segmenation("stats");
+    seg_1.find_contour_image_segmentation("default");
 
     seg_1.get_segmented_image(imag_out);
+    seg_1.get_contour_image(imag_out_2);
+
+//    seg_1.get_contours(contours);
 //    seg_1.display_object_segmenation();
+//    seg_1.display_contour_segmenation();
 
     seg_1.infos();
 
@@ -244,6 +252,7 @@ void TutoLib::segmentation_tutorial(bool disp){
         imshow(img_name_ref+" sub", imag_sub);
         imshow(img_name_ref + " binary", imag_bin);
         imshow(img_name_ref + " segmented", imag_out);
+        imshow(img_name_ref + " contoured", imag_out_2);
 
         waitKey(1000);
         waitKey(0);
