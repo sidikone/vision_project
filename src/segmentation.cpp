@@ -1,5 +1,7 @@
 #include "segmentation.h"
 
+#include <opencv2/core/hal/interface.h>
+
 using namespace std;
 using namespace cv;
 

@@ -22,6 +22,8 @@ private:
     bool contour_trig = false;
     bool stats_trig = false;
 
+    bool watershed_trig = false;
+
     cv::Mat _imag;
     cv::Mat _im_remov_back;
     cv::Mat _im_bin;
@@ -44,6 +46,7 @@ public:
     SegmenTation(cv::Mat&);
 
 // Preprocessing function
+
     void compute_background_removing(cv::Mat&, std::string);
     void compute_background_removing(std::string, int);
     void compute_image_binerization(std::string typ, double, double);
@@ -54,7 +57,6 @@ public:
     void display_contour_segmenation(bool);
     void display_object_segmenation();
     void display_contour_segmenation();
-
     void infos();
 
 // Processing function
