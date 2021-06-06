@@ -40,7 +40,6 @@ void TutoLib::image_reader_tutorial(){
     ImagReader image_2(imag);
 }
 
-
 void TutoLib::video_reader_tutorial(){
 
     // Dataset path
@@ -59,7 +58,6 @@ void TutoLib::video_reader_tutorial(){
 
 }
 
-
 void TutoLib::camera_reader_tutorial(){
 
     namedWindow("Camera", WINDOW_AUTOSIZE);
@@ -67,7 +65,6 @@ void TutoLib::camera_reader_tutorial(){
     cam_1.showVideo("Camera", 33, "hsv");
     destroyWindow("Camera");
 }
-
 
 void TutoLib::image_writer_tutorial(bool disp){
 
@@ -95,7 +92,6 @@ void TutoLib::image_writer_tutorial(bool disp){
 //    save_2.open(image_1);
     save_2.saveImage("./../out/images/imag_out_2.png");
 }
-
 
 void TutoLib::smoothing_tutorial(bool disp){
 
@@ -128,7 +124,6 @@ void TutoLib::smoothing_tutorial(bool disp){
     }
 }
 
-
 void TutoLib::edging_tutorial(bool disp){
 
     // Dataset path
@@ -159,7 +154,6 @@ void TutoLib::edging_tutorial(bool disp){
         destroyWindow(img_name_ref);
     }
 }
-
 
 void TutoLib::morphology_tutorial(bool disp){
 
@@ -198,7 +192,6 @@ void TutoLib::morphology_tutorial(bool disp){
         destroyWindow(img_name_ref);
     }
 }
-
 
 void TutoLib::segmentation_tutorial(bool disp){
 
@@ -257,6 +250,56 @@ void TutoLib::segmentation_tutorial(bool disp){
     }
 }
 
+
+void TutoLib::watershed_segmentation_tutorial(bool disp){
+
+    // Dataset path
+    Inputs data_set;
+    SetInput::Init(&data_set);
+    // Get the file name into a reference
+    string &img_name_ref = data_set.image_name;
+    // Read Image from path using string constructor
+    ImagReader image_1(data_set.image_path);
+    ImagReader  image_2("../data/images/light.pgm");
+
+    Mat imag_raw;
+    Mat imag_gray;
+    Mat imag_ref;
+    Mat imag_bin;
+
+    image_1.getImage(imag_raw);
+    image_1.color2gray(imag_gray);
+    image_2.color2gray(imag_ref);
+    imag_gray = imag_ref - imag_gray;
+
+    WatershedSeg seg_1(imag_raw);
+    ImagBinary binary_1(imag_gray);
+    binary_1.binary_threshold(imag_bin, "bin", 30, 255);
+    
+    Mat markers;
+    seg_1.compute_markers(imag_bin, 4);
+    seg_1.compute_watershed(markers);
+
+    Mat im_segment;
+    Mat im_element;
+    seg_1.get_segmented_elements(im_element);
+    seg_1.get_segmented_image(im_segment);
+
+
+    if (disp){
+        imshow(img_name_ref, imag_raw);
+        imshow(img_name_ref + " gray", imag_gray);
+        imshow(img_name_ref + " binary", imag_bin);
+
+        imshow(img_name_ref + " watershed segment", im_segment);
+        imshow(img_name_ref + " watershed element", im_element);
+        
+        waitKey(0);
+        destroyWindow(img_name_ref);
+    }
+}
+
+
 void TutoLib::image_binary_tutorial(bool disp){
 
     // Dataset path
@@ -289,7 +332,6 @@ void TutoLib::image_binary_tutorial(bool disp){
         destroyWindow(img_name_ref);
     }
 }
-
 
 void TutoLib::histogram_tutorial(){
 

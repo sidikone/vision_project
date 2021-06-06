@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 #include "histogram.h"
 #include "image_reader.h"
@@ -14,6 +15,7 @@
 #include "edging.h"
 #include "morphology.h"
 #include "segmentation.h"
+#include "watershed_segmentation.h"
 
 #include "image_binay.h"
 #include "cam_reader.h"
@@ -46,6 +48,9 @@ namespace TutoLib{
 
 // Segmentation tutorial
     void segmentation_tutorial(bool);
+
+// Segmentation tutorial
+    void watershed_segmentation_tutorial(bool);
 
 };
 
