@@ -250,7 +250,6 @@ void TutoLib::segmentation_tutorial(bool disp){
     }
 }
 
-
 void TutoLib::watershed_segmentation_tutorial(bool disp){
 
     // Dataset path
@@ -298,7 +297,6 @@ void TutoLib::watershed_segmentation_tutorial(bool disp){
         destroyWindow(img_name_ref);
     }
 }
-
 
 void TutoLib::image_binary_tutorial(bool disp){
 
