@@ -44,7 +44,7 @@ add_executable(${APPName} ${SRCS})
 # --------------------------------------------------------
 # Library
 
-add_library(${PJName} SHARED ${SRCS})
+add_library(${PJName} STATIC ${SRCS})
 
 # --------------------------------------------------------
 # Target link
