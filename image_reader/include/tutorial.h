@@ -8,17 +8,7 @@
 
 #include "histogram.h"
 #include "image_reader.h"
-// #include "video_reader.h"
-
 #include "image_writer.h"
-// #include "smoothing.h"
-// #include "edging.h"
-// #include "morphology.h"
-// #include "segmentation.h"
-// #include "watershed_segmentation.h"
-
-// #include "image_binay.h"
-// #include "cam_reader.h"
 #include "param.h"
 
 namespace TutoLib{
@@ -33,24 +23,6 @@ namespace TutoLib{
 
 // Histogram tutorial
     void histogram_tutorial();
-
-// // Binary tutorial
-//     void image_binary_tutorial(bool);
-
-// // Smoothing tutorial
-//     void smoothing_tutorial(bool);
-
-// // Edging tutorial
-//     void edging_tutorial(bool);
-
-// // Morphology tutorial
-//     void morphology_tutorial(bool);
-
-// // Segmentation tutorial
-//     void segmentation_tutorial(bool);
-
-// // Segmentation tutorial
-//     void watershed_segmentation_tutorial(bool);
 
 };
 
