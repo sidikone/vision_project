@@ -15,8 +15,6 @@ namespace TutoLib{
 
 // Reader tutorial
     void image_reader_tutorial();
-    // void video_reader_tutorial();
-    // void camera_reader_tutorial();
 
 // Writer tutorial
     void image_writer_tutorial(bool);

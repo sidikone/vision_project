@@ -17,8 +17,8 @@ int main(int argc, char *argv[]){
 
 void main_function(){
 
-//    TutoLib::histogram_tutorial();
+   TutoLib::histogram_tutorial();
    TutoLib::image_reader_tutorial();
-//    TutoLib::image_writer_tutorial(true);
+   TutoLib::image_writer_tutorial(true);
 
 }
