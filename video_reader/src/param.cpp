@@ -10,7 +10,7 @@ void SetInput::Init(Inputs *ptr){
     ptr->image_name = "lena";
     ptr->image_output_path = "output/";
 
-    ptr->video_path = "/home/aboubakar/dataset_wd/media_files/videos/Meet_WalkTogether1.mpg";
+    ptr->video_path = "/home/aboubakar/dataset_wd/media_files/videos/BigBuckBunny.mp4";
     ptr->video_name = "Walk together";
 
 }

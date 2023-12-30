@@ -17,7 +17,9 @@ void VideoReader::showVideo(string window_name, int delta, string typ){
 
     Mat imag;
     Mat* imag_ptr;
-
+    // ImagReader imag_1;
+    int i = 0;
+    
     for (;;){
         _video >> imag;
         if (imag.empty()) {
@@ -25,12 +27,14 @@ void VideoReader::showVideo(string window_name, int delta, string typ){
         }
         if (typ == "gray"){
             ImagReader imag_1(imag);
+            imag_1.openImage(imag);
             imag_ptr = imag_1.color2gray();
             imshow(window_name, *imag_ptr);
         }
 
         else if (typ == "hsv") {
             ImagReader imag_1(imag);
+            // imag_1.openImage(imag);            
             imag_ptr = imag_1.color2hsv();
             imshow(window_name, *imag_ptr);
         }
