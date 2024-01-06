@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "smoothing.h"
-#include "image_binay.h"
+#include "image_binary.h"
 
 typedef std::vector<std::vector<cv::Point>> PointVect;
 

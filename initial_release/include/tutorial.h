@@ -17,7 +17,7 @@
 #include "segmentation.h"
 #include "watershed_segmentation.h"
 
-#include "image_binay.h"
+#include "image_binary.h"
 #include "cam_reader.h"
 #include "param.h"
 
