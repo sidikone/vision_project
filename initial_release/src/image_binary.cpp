@@ -1,4 +1,4 @@
-#include "image_binay.h"
+#include "image_binary.h"
 
 using namespace cv;
 

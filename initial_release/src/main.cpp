@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 void main_function(){
 
 //    TutoLib::histogram_tutorial();
-//    TutoLib::image_reader_tutorial();
+   TutoLib::image_reader_tutorial();
 //    TutoLib::image_writer_tutorial(true);
 //    TutoLib::smoothing_tutorial(true);
 //    TutoLib::image_binary_tutorial(true);
@@ -26,6 +26,6 @@ void main_function(){
 //    TutoLib::morphology_tutorial(true);
 //    TutoLib::segmentation_tutorial(true);
 
-    TutoLib::watershed_segmentation_tutorial(true);
+    // TutoLib::watershed_segmentation_tutorial(true);
 
 }
