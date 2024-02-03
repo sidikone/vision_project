@@ -1,0 +1,6 @@
+- name: Walk together
+  stream_1: /home/aboubakar/dataset_wd/media_files/videos/BigBuckBunny.mp4
+  # stream_2: "rtsp://aboubakar:lundi88_Janvier_251@192.168.1.39/stream2"
+- name: "_"
+  stream_1: "_"
+#   stream_2: "rtsp://aboubakar:lundi88_Janvier_251@192.168.1.36/stream2"
